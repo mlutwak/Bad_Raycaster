@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-datatype struct bhv_node {
+typedef struct bhv_node {
   float b0[3];
   float b1[3];
   float b2[3];
@@ -12,7 +12,7 @@ datatype struct bhv_node {
   int stop_index;
 } bvh_t;
 
-datatype float[3] tri_t;
+typedef float[3][3] tri_t;
 
 bvh_t *bvh;
 tri_t *tris;
