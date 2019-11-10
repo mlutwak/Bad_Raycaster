@@ -1,5 +1,5 @@
-# 643
-yes
+# Bad Ray Casting
+Welcome to our extremely well made 643 project for Ray Tracing on FPGA
 
 format:
 
