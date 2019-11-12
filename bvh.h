@@ -22,4 +22,4 @@ tri_t *tris;
 void parse_bvh_file(char *file_name);
 
 void print_bvh();
-void free_bvh(bvh_t *bvh);
+void free_bvh();

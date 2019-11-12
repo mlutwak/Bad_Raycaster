@@ -8,16 +8,16 @@ bvh_t *populate_bvh(char **line_addr, size_t *len_addr, FILE *fp) {
 
   ssize_t read;
 
-  read = getline(line_addr, len_addr_afpddr, fp);
+  read = getline(line_addr, len_addr, fp);
 
   char bbox_delim[] = "\n\t (),";
 
-  int is_leaf
-  float[6] corner_verts;
+  int is_leaf;
+  float corner_verts[6];
   int start;
   int stop;
 
-  char *ptr = strtok(*line, bbox_delim);
+  char *ptr = strtok(*line_addr, bbox_delim);
 
   is_leaf = atoi(ptr);
   ptr = strtok(NULL, bbox_delim);
@@ -86,6 +86,7 @@ void parse_bvh_file(char *file_name) {
   fp = fopen(file_name, "r");
   if (fp == NULL) {
     exit(EXIT_FAILURE);
+  }
 
   // parse the number of triangles in the scene
   read = getline(&line, &len, fp);
@@ -114,35 +115,46 @@ void parse_bvh_file(char *file_name) {
     }
   }
 
-  bvh = populate_bvh(&line, len, fp);
+  for (i = 0; i < num_tris; i++) {
+    printf("tris[%d]:(%.3f,%.3f,%.3f)(%.3f,%.3f,%.3f)(%.3f,%.3f,%.3f)\n",
+      i,
+      tris[i][0][0], tris[i][0][1], tris[i][0][2],
+      tris[i][1][0], tris[i][1][1], tris[i][1][2],
+      tris[i][2][0], tris[i][2][1], tris[i][2][2]);
+  }
+
+  bvh = populate_bvh(&line, &len, fp);
 
   free(line);
 
 }
 
-void free_bvh(bvh_t *bvh_node) {
+void free_bvh_node(bvh_t *bvh_node) {
   // assume bvh_node is not null
 
   if (bvh_node->left != NULL) {
-    free_bvh(bvh_node->left);
-    free_bvh(bvh_node->right);
+    free_bvh_node(bvh_node->left);
+    free_bvh_node(bvh_node->right);
   }
   free(bvh_node);
 }
 
+void free_bvh() {
+  free_bvh_node(bvh);
+}
 
-void print_bvh_node(bvh_t *node, level) {
+void print_bvh_node(bvh_t *node, int level) {
   int i;
   for (i = 0; i < level; i++) {
     printf("  ");
   }
 
-  printf("(%f,%f,%f) (%f,%f,%f)", 
+  printf("(%.3f,%.3f,%.3f) (%.3f,%.3f,%.3f)", 
     node->corner0[0], node->corner0[1], node->corner0[2], 
     node->corner1[0], node->corner1[1], node->corner1[2]);
 
   if (node->left == NULL) {
-    printf(" start:%d stop:%d\n", node->start_index, stop_index);
+    printf(" start:%d stop:%d\n", node->start_index, node->stop_index);
   }
 
   else {
@@ -154,4 +166,13 @@ void print_bvh_node(bvh_t *node, level) {
 
 void print_bvh() {
   print_bvh_node(bvh, 0);
+}
+
+int main(int argc, char** argv) {
+  if (argc < 2) return 1;
+  printf("%s\n", argv[1]);
+  parse_bvh_file(argv[1]);
+  print_bvh();
+  free_bvh();
+  return 0;
 }
