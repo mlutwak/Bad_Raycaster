@@ -1,8 +1,14 @@
-include "bvh.h"
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include "bvh.h"
 
 bvh_t *populate_bvh(char **line_addr, size_t *len_addr, FILE *fp) {
 
-  read = getline(line_addr, len_addr_afpddr, fp)line_addr, len_addr_afp;
+  ssize_t read;
+
+  read = getline(line_addr, len_addr_afpddr, fp);
 
   char bbox_delim[] = "\n\t (),";
 
@@ -109,6 +115,8 @@ void parse_bvh_file(char *file_name) {
   }
 
   bvh = populate_bvh(&line, len, fp);
+
+  free(line);
 
 }
 
