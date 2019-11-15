@@ -1,10 +1,26 @@
 // main
 
+
+
+#define MATHC_USE_UNIONS
+
+#define WIDTH   20
+#define HEIGHT  20
+#define CAM_HFOV    90
+#define CAM_VFOV    90
+
+
 #include "camera.h"
 #include <math.h>
 #include "../lib/mathc.h"
+#include "bvh.h"
+#include "intersect.h"
 
-int main() {
+int main(int argc, char** argv) {
+    if (argc < 2) return 1;
+    printf("%s\n", argv[1]);
+    parse_bvh_file(argv[1]);
+    print_bvh();
 
     camera_t * cam = malloc(sizeof(camera_t));
 
@@ -31,5 +47,6 @@ int main() {
         }
     }
 
+    free_bvh();
     return 0;
 }
