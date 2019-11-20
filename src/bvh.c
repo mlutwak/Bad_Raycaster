@@ -91,7 +91,7 @@ void parse_bvh_file(char *file_name) {
   // parse the number of triangles in the scene
   read = getline(&line, &len, fp);
   num_tris = atoi(line);
-  printf("num_tris:%d\n", num_tris);
+  //printf("num_tris:%d\n", num_tris);
 
   tris = calloc(num_tris, sizeof(tri_t));
 
@@ -115,13 +115,13 @@ void parse_bvh_file(char *file_name) {
     }
   }
 
-  for (i = 0; i < num_tris; i++) {
-    printf("tris[%d]:(%.3f,%.3f,%.3f)(%.3f,%.3f,%.3f)(%.3f,%.3f,%.3f)\n",
-      i,
-      tris[i][0][0], tris[i][0][1], tris[i][0][2],
-      tris[i][1][0], tris[i][1][1], tris[i][1][2],
-      tris[i][2][0], tris[i][2][1], tris[i][2][2]);
-  }
+  // for (i = 0; i < num_tris; i++) {
+  //   printf("tris[%d]:(%.3f,%.3f,%.3f)(%.3f,%.3f,%.3f)(%.3f,%.3f,%.3f)\n",
+  //     i,
+  //     tris[i][0][0], tris[i][0][1], tris[i][0][2],
+  //     tris[i][1][0], tris[i][1][1], tris[i][1][2],
+  //     tris[i][2][0], tris[i][2][1], tris[i][2][2]);
+  // }
 
   bvh = populate_bvh(&line, &len, fp);
 

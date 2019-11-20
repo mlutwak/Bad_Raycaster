@@ -97,7 +97,7 @@ mfloat_t intersect_tri(ray_t* r, tri_t tri) {
     mfloat_t det = (mfloat_t) vec3_dot(v0v1, pvec);
 
     // for now, dont care if face is backwards
-    if (MFABS(det) < MFLT_EPSILON) return false;
+    if (MFABS(det) < MFLT_EPSILON) return ISECT_MISS;
 
     mfloat_t invDet = 1 / det;
 
@@ -106,13 +106,13 @@ mfloat_t intersect_tri(ray_t* r, tri_t tri) {
 
     mfloat_t u = vec3_dot(tvec, pvec) * invDet;
 
-    if (u < 0 || u > 1) return false;
+    if (u < 0 || u > 1) return ISECT_MISS;
 
     mfloat_t qvec[3];
     vec3_cross(qvec, tvec, v0v1);
 
     mfloat_t v = vec3_dot(r->dir.v, qvec) * invDet;
-    if (v < 0 || u + v > 1) return false;
+    if (v < 0 || u + v > 1) return ISECT_MISS;
 
     mfloat_t t = vec3_dot(v0v2, qvec) * invDet;
 
