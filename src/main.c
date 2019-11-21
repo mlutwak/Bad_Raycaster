@@ -6,8 +6,8 @@
 
 #define WIDTH   640
 #define HEIGHT  480
-#define CAM_HFOV    90
-#define CAM_VFOV    90
+#define CAM_HFOV    110
+#define CAM_VFOV    70
 
 
 #include "camera.h"
@@ -28,7 +28,7 @@ int main(int argc, char** argv) {
     cam->vfov = MRADIANS(CAM_VFOV);
     cam->hpix = WIDTH;
     cam->vpix = HEIGHT;
-    vec3(cam->origin.v, 0.f,0.f,-3.f);
+    vec3(cam->origin.v, 0.f,0.f,-4.f);
     vec3(cam->dir.v, 0.f,0.f,-1.f);
 
     struct vec3 xaxis;

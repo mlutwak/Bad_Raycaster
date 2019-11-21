@@ -100,7 +100,7 @@ mfloat_t intersect_box(ray_t* r, bvh_t* b) {
     // is isect in front?
     if (tmin > 0 && tmax > 0) return ISECT_MISS;
 
-    return 0.0;
+    return ISECT_MISS - 1;
 
 }
 
