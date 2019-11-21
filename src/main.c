@@ -28,7 +28,7 @@ int main(int argc, char** argv) {
     cam->vfov = MRADIANS(CAM_VFOV);
     cam->hpix = WIDTH;
     cam->vpix = HEIGHT;
-    vec3(cam->origin.v, 0.f,0.f,5.f);
+    vec3(cam->origin.v, 0.f,0.f,-3.f);
     vec3(cam->dir.v, 0.f,0.f,-1.f);
 
     struct vec3 xaxis;
@@ -47,8 +47,9 @@ int main(int argc, char** argv) {
     for (i=0; i<HEIGHT; i++) {
         for (j=0; j<WIDTH; j++) {
             ray_t* ret = get_ray_through_pixel(cam, j,i);
-            // printf("o = (%f,%f,%f)\tdir = (%f,%f,%f)\txy=(%d,%d)\n",ret->origin.x, ret->origin.y, ret->origin.z,
-            //                                            ret->dir.x, ret->dir.y, ret->dir.z,j,i);
+//             printf("o = (%f,%f,%f)\tdir = (%f,%f,%f)\txy=(%d,%d)\n",
+//                    ret->origin.x, ret->origin.y, ret->origin.z,
+//                    ret->dir.x, ret->dir.y, ret->dir.z,j,i);
 
             mfloat_t dist;
             dist = intersect(ret, bvh);
@@ -58,6 +59,7 @@ int main(int argc, char** argv) {
         }
     }
 
+    //return 0;
     //printf("here:(%f,%f)\n", min_dist, max_dist);
 
     mfloat_t min_r, max_r, min_g, max_g, min_b, max_b;

@@ -43,44 +43,68 @@ mfloat_t intersect(ray_t* r, bvh_t* b) {
     return ISECT_MISS;
 }
 
+
+mfloat_t max(mfloat_t a, mfloat_t b) {
+    if (a > b) {
+        return a;
+    }
+    else {
+        return b;
+    }
+}
+
+mfloat_t min(mfloat_t a, mfloat_t b) {
+    if (a > b) {
+        return b;
+    }
+    else {
+        return a;
+    }
+}
+
 mfloat_t intersect_box(ray_t* r, bvh_t* b) {
-     mfloat_t tmin = (b->corner0[0] - r->origin.x) / r->dir.x;
-     mfloat_t tmax = (b->corner1[0] - r->origin.x) / r->dir.x;
 
-    if (tmin > tmax) swap(&tmin, &tmax);
+    mfloat_t tmin = -INFINITY;
+    mfloat_t tmax = INFINITY;
+    mfloat_t t1, t2;
 
-     mfloat_t tymin = (b->corner0[1] - r->origin.y) / r->dir.y;
-     mfloat_t tymax = (b->corner1[1] - r->origin.y) / r->dir.y;
+    if (r->dir.x != 0.0) {
 
-    if (tymin > tymax) swap(&tymin, &tymax);
+        t1 = (min(b->corner0[0], b->corner1[0]) - r->origin.x) / r->dir.x;
+        t2 = (max(b->corner0[0], b->corner1[0]) - r->origin.x) / r->dir.x;
 
-    if ((tmin > tymax) || (tymin > tmax))
-    return ISECT_MISS;
+        tmin = max(tmin, min(t1, t2));
+        tmax = min(tmax, max(t1, t2));
+    }
 
-    if (tymin > tmin)
-    tmin = tymin;
+    if (r->dir.y != 0.0) {
 
-    if (tymax < tmax)
-    tmax = tymax;
+        t1 = (min(b->corner0[1], b->corner1[1]) - r->origin.y) / r->dir.y;
+        t2 = (max(b->corner0[1], b->corner1[1]) - r->origin.y) / r->dir.y;
 
-    mfloat_t tzmin = (b->corner0[2] - r->origin.z) / r->dir.z;
-    mfloat_t tzmax = (b->corner1[2] - r->origin.z) / r->dir.z;
+        tmin = max(tmin, min(t1, t2));
+        tmax = min(tmax, max(t1, t2));
+    }
 
-    if (tzmin > tzmax) swap(&tzmin, &tzmax);
+    if (r->dir.z != 0.0) {
 
-    if ((tmin > tzmax) || (tzmin > tmax))
-    return ISECT_MISS;
+        t1 = (min(b->corner0[2], b->corner1[2]) - r->origin.z) / r->dir.z;
+        t2 = (max(b->corner0[2], b->corner1[2]) - r->origin.z) / r->dir.z;
 
-    if (tzmin > tmin)
-    tmin = tzmin;
+        tmin = max(tmin, min(t1, t2));
+        tmax = min(tmax, max(t1, t2));
+    }
 
-    if (tzmax < tmax)
-    tmax = tzmax;
+    // does line isect work?
+    if (tmax < tmin) return ISECT_MISS;
+    // is isect in front?
+    if (tmin > 0 && tmax > 0) return ISECT_MISS;
 
     return 0.0;
 
 }
 
+/*
 mfloat_t intersect_tri(ray_t* r, tri_t tri) {
     mfloat_t* v0, *v1, *v2;
     v0 = (mfloat_t *) (&tri[0]);
@@ -118,6 +142,45 @@ mfloat_t intersect_tri(ray_t* r, tri_t tri) {
 
     return t;
 }
+*/
+mfloat_t intersect_tri(ray_t* r, tri_t tri) {
+    mfloat_t* v0, *v1, *v2;
+    v0 = (mfloat_t *) (&tri[0]);
+    v1 = (mfloat_t *) (&tri[1]);
+    v2 = (mfloat_t *) (&tri[2]);
 
+    // precompute some vals
+    mfloat_t s[3];
+    vec3_subtract(s, r->origin.v, v0);
+    mfloat_t e1[3], e2[3];
+    vec3_subtract(e1, v1, v0);
+    vec3_subtract(e2, v2, v0);
+    mfloat_t e1d[3], se2[3];
+    vec3_cross(e1d, e1, r->dir.v);
+    vec3_cross(se2, s, e2);
+    mfloat_t denom = vec3_dot(e1d, e2);
+    mfloat_t uvt[3];
+    if (denom != 0) {
+        uvt[0] = -1/denom * vec3_dot(se2, r->dir.v);
+        uvt[1] =  1/denom * vec3_dot(e1d, s);
+        uvt[2] = -1/denom * vec3_dot(se2, e1);
+    }
+    else {
+        uvt[0] = -1;
+        uvt[1] = -1;
+        uvt[2] = -1;
+    }
 
+    if (uvt[0] < 0 || uvt[1] < 0 ||
+        uvt[0] > 1 || uvt[1] > 1 ||
+        uvt[0] + uvt[1] > 1) {
+        return ISECT_MISS;
+    }
+    // if behind,
+    if (uvt[2] > 0) {
+        return ISECT_MISS;
+    }
+
+    return uvt[2];
+}
 
