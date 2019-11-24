@@ -11,7 +11,7 @@ def writeFile(path, contents):
     f.write(contents)
 
 def writePic(pixPath, picPath):
-  
+
   pixels = readPix(pixPath)
 
   # Convert the pixels into an array using numpy
@@ -26,13 +26,14 @@ def readPix(pixPath):
 
   pixels = []
   for line in contents.splitlines():
-
     pixelLine = []
     count = 0
     r = 0
     g = 0
     b = 0
     for val in line.split(" "):
+      if (val == ""):
+        continue
       if count == 0:
         r = int(val)
         count += 1
@@ -69,5 +70,5 @@ def genPix(pixPath):
 
   writeFile(pixPath, contents)
 
-genPix("gradient2.txt")
-writePic("gradient2.txt", "gradient2.png")
+#genPix("gradient2.txt")
+writePic("output.dat", "output.png")

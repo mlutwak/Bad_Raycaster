@@ -27,7 +27,7 @@ typedef struct ray {
 ray_t* new_ray();
 
 // generate random ray through a pixel
-ray_t* get_ray_through_pixel(camera_t* cam, size_t x, size_t y);
+ray_t* get_ray_through_pixel(camera_t* cam, size_t x, size_t y, bool yes);
 // void camera_setpos(camera_t* c, vec3_t* origin, vec3_t* dir);
 
 #endif

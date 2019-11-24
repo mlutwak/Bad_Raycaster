@@ -7,7 +7,7 @@ ray_t* new_ray() {
 
 // generate random ray through a pixel
 // generate in camera space, then transform to world coordinates
-ray_t* get_ray_through_pixel(camera_t* cam, size_t x, size_t y) {
+ray_t* get_ray_through_pixel(camera_t* cam, size_t x, size_t y, bool yes) {
     ray_t* res = new_ray();
     vec3_assign((res->origin.v), (cam->origin.v));
     float hang, vang;
@@ -16,7 +16,12 @@ ray_t* get_ray_through_pixel(camera_t* cam, size_t x, size_t y) {
 
     float xoff = tanf(hang);
     float yoff = tanf(vang);
-    vec3((res->dir.v), xoff, yoff, -1.f);
+    if (yes) {
+        vec3((res->dir.v), -xoff, yoff, 1.f);
+    }
+    else {
+        vec3((res->dir.v), xoff, yoff, -1.f);
+    }
     vec3_normalize((res->dir.v), (res->dir.v));
     return res;
 }

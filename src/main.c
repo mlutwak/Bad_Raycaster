@@ -21,6 +21,7 @@ int main(int argc, char** argv) {
     //printf("%s\n", argv[1]);
     parse_bvh_file(argv[1]);
     //print_bvh();
+    bool yes = (argv[2][0] == 'Y');
 
     camera_t * cam = malloc(sizeof(camera_t));
 
@@ -28,8 +29,10 @@ int main(int argc, char** argv) {
     cam->vfov = MRADIANS(CAM_VFOV);
     cam->hpix = WIDTH;
     cam->vpix = HEIGHT;
-    vec3(cam->origin.v, 0.f,0.f,-4.f);
+    vec3(cam->origin.v, 0.f,0.f,-3.f);
+    cam->origin.z *= (1-yes*2);
     vec3(cam->dir.v, 0.f,0.f,-1.f);
+    cam->dir.z *= (1-yes*2);
 
     struct vec3 xaxis;
     struct vec3 yaxis;
@@ -46,7 +49,7 @@ int main(int argc, char** argv) {
 
     for (i=0; i<HEIGHT; i++) {
         for (j=0; j<WIDTH; j++) {
-            ray_t* ret = get_ray_through_pixel(cam, j,i);
+            ray_t* ret = get_ray_through_pixel(cam, j,i,yes);
 //             printf("o = (%f,%f,%f)\tdir = (%f,%f,%f)\txy=(%d,%d)\n",
 //                    ret->origin.x, ret->origin.y, ret->origin.z,
 //                    ret->dir.x, ret->dir.y, ret->dir.z,j,i);

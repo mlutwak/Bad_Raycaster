@@ -62,6 +62,22 @@ mfloat_t min(mfloat_t a, mfloat_t b) {
     }
 }
 
+mfloat_t intersect_kernel(ray_t* r, tri_t t[KERNEL_SIZE], size_t num_tris) {
+    // for each triangle
+    mfloat_t small = ISECT_MISS;
+    mfloat_t ret = ISECT_MISS;
+    tri_t* cur = t;
+    for (size_t i = 0; i < num_tris; i++) {
+        ret = intersect_tri(r, *(cur+i));
+        if (ret < small) {
+            small = ret;
+        }
+    }
+    return small;
+
+}
+
+
 mfloat_t intersect_box(ray_t* r, bvh_t* b) {
 
     mfloat_t tmin = -INFINITY;
@@ -181,6 +197,6 @@ mfloat_t intersect_tri(ray_t* r, tri_t tri) {
         return ISECT_MISS;
     }
 
-    return uvt[2];
+    return MFABS(uvt[2]);
 }
 
