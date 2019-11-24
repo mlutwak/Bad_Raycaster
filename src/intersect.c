@@ -29,9 +29,10 @@ mfloat_t intersect(ray_t* r, bvh_t* b) {
         }
         // if this is a leaf node
         else {
+            return intersect_kernel(*r, &tris[b->start_index], b->stop_index - b->start_index);
             // for each triangle
             for (int i=b->start_index; i < b->stop_index; i++) {
-                ret = intersect_tri(r, tris[i]);
+                ret = intersect_tri(*r, tris[i]);
                 if (ret < small) {
                     idx = i;
                     small = ret;
@@ -62,7 +63,7 @@ mfloat_t min(mfloat_t a, mfloat_t b) {
     }
 }
 
-mfloat_t intersect_kernel(ray_t* r, tri_t t[KERNEL_SIZE], size_t num_tris) {
+mfloat_t intersect_kernel(ray_t r, tri_t t[KERNEL_SIZE], size_t num_tris) {
     // for each triangle
     mfloat_t small = ISECT_MISS;
     mfloat_t ret = ISECT_MISS;
@@ -159,7 +160,7 @@ mfloat_t intersect_tri(ray_t* r, tri_t tri) {
     return t;
 }
 */
-mfloat_t intersect_tri(ray_t* r, tri_t tri) {
+mfloat_t intersect_tri(ray_t r, tri_t tri) {
     mfloat_t* v0, *v1, *v2;
     v0 = (mfloat_t *) (&tri[0]);
     v1 = (mfloat_t *) (&tri[1]);
@@ -167,17 +168,17 @@ mfloat_t intersect_tri(ray_t* r, tri_t tri) {
 
     // precompute some vals
     mfloat_t s[3];
-    vec3_subtract(s, r->origin.v, v0);
+    vec3_subtract(s, r.origin.v, v0);
     mfloat_t e1[3], e2[3];
     vec3_subtract(e1, v1, v0);
     vec3_subtract(e2, v2, v0);
     mfloat_t e1d[3], se2[3];
-    vec3_cross(e1d, e1, r->dir.v);
+    vec3_cross(e1d, e1, r.dir.v);
     vec3_cross(se2, s, e2);
     mfloat_t denom = vec3_dot(e1d, e2);
     mfloat_t uvt[3];
     if (denom != 0) {
-        uvt[0] = -1/denom * vec3_dot(se2, r->dir.v);
+        uvt[0] = -1/denom * vec3_dot(se2, r.dir.v);
         uvt[1] =  1/denom * vec3_dot(e1d, s);
         uvt[2] = -1/denom * vec3_dot(se2, e1);
     }
