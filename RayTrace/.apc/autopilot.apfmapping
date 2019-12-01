@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
+  <source>
+    <originFiles name="intersect.h" path="C:\Users\Charles\Desktop\18-643\Bad_Raycaster\src\intersect.h"/>
+    <originFiles name="intersect.c" path="C:\Users\Charles\Desktop\18-643\Bad_Raycaster\src\intersect.c"/>
+    <originFiles name="camera.h" path="C:\Users\Charles\Desktop\18-643\Bad_Raycaster\src\camera.h"/>
+    <originFiles name="bvh.h" path="C:\Users\Charles\Desktop\18-643\Bad_Raycaster\src\bvh.h"/>
+    <originFiles name="mathc.h" path="C:\Users\Charles\Desktop\18-643\Bad_Raycaster\lib\mathc.h"/>
+  </source>
+  <testbench>
+    <originFiles name="main.c" path="C:\Users\Charles\Desktop\18-643\Bad_Raycaster\src\main.c"/>
+    <originFiles name="camera.c" path="C:\Users\Charles\Desktop\18-643\Bad_Raycaster\src\camera.c"/>
+    <originFiles name="bvh.c" path="C:\Users\Charles\Desktop\18-643\Bad_Raycaster\src\bvh.c"/>
+    <originFiles name="mathc.c" path="C:\Users\Charles\Desktop\18-643\Bad_Raycaster\lib\mathc.c"/>
+  </testbench>
+</autopilotfilemapping:AutoPilotFileMapping>

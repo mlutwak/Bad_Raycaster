@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete 7 resources" deleteContents="false" description="Delete 7 resources" element1="/design_1_wrapper_hw_platform_0/bvh.c" element2="/design_1_wrapper_hw_platform_0/bvh.h" element3="/design_1_wrapper_hw_platform_0/camera.c" element4="/design_1_wrapper_hw_platform_0/camera.h" element5="/design_1_wrapper_hw_platform_0/intersect.c" element6="/design_1_wrapper_hw_platform_0/intersect.h" element7="/design_1_wrapper_hw_platform_0/main.c" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="7" stamp="1575187677957"/>
+</session>

@@ -1,0 +1,44 @@
+02:59:16 INFO  : Registering command handlers for SDK TCF services
+02:59:17 INFO  : Launching XSCT server: xsct.bat -interactive C:\Users\Charles\Desktop\18-643\Bad_Raycaster\project_3\project_3.sdk\temp_xsdb_launch_script.tcl
+02:59:21 INFO  : XSCT server has started successfully.
+02:59:21 INFO  : Successfully done setting XSCT server connection channel  
+02:59:28 INFO  : Successfully done setting SDK workspace  
+02:59:28 INFO  : Processing command line option -hwspec C:/Users/Charles/Desktop/18-643/Bad_Raycaster/project_3/project_3.sdk/design_1_wrapper.hdf.
+03:10:30 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+03:11:58 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+03:12:11 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+03:12:21 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+03:12:39 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+03:14:25 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+03:14:28 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+03:14:28 INFO  : 'targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0' command is executed.
+03:14:28 ERROR : bitstream is not compatible with the target
+03:36:47 INFO  : SDK has detected change in the last modified timestamps for source hardware specification file Source:1575188710580,  Project:1575186869362
+03:36:47 INFO  : Project design_1_wrapper_hw_platform_0's source hardware specification located at C:/Users/Charles/Desktop/18-643/Bad_Raycaster/project_3/project_3.sdk/design_1_wrapper.hdf is now different from the local copy.
+		 The local copy will be replaced with the source specification and your workspace will be updated.
+03:36:58 INFO  : Copied contents of C:/Users/Charles/Desktop/18-643/Bad_Raycaster/project_3/project_3.sdk/design_1_wrapper.hdf into \design_1_wrapper_hw_platform_0\system.hdf.
+03:37:22 INFO  : Synchronizing projects in the workspace with the hardware platform specification changes.
+03:37:23 INFO  : Clearing existing target manager status.
+03:37:23 INFO  : Workspace synchronized with the new hardware specification file. Cleaning dependent projects...
+03:37:23 WARN  : Linker script will not be updated automatically. Users need to update it manually.
+03:39:07 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+03:39:10 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+03:39:10 INFO  : 'targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0' command is executed.
+03:39:10 ERROR : bitstream is not compatible with the target
+04:39:51 INFO  : SDK has detected change in the last modified timestamps for source hardware specification file Source:1575193042036,  Project:1575188710580
+04:39:51 INFO  : Project design_1_wrapper_hw_platform_0's source hardware specification located at C:/Users/Charles/Desktop/18-643/Bad_Raycaster/project_3/project_3.sdk/design_1_wrapper.hdf is now different from the local copy.
+		 The local copy will be replaced with the source specification and your workspace will be updated.
+04:39:58 INFO  : Copied contents of C:/Users/Charles/Desktop/18-643/Bad_Raycaster/project_3/project_3.sdk/design_1_wrapper.hdf into \design_1_wrapper_hw_platform_0\system.hdf.
+04:40:29 INFO  : Synchronizing projects in the workspace with the hardware platform specification changes.
+04:40:30 INFO  : Clearing existing target manager status.
+04:40:30 INFO  : Workspace synchronized with the new hardware specification file. Cleaning dependent projects...
+04:40:30 WARN  : Linker script will not be updated automatically. Users need to update it manually.
+04:40:54 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+04:40:54 INFO  : 'targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0' command is executed.
+04:40:57 INFO  : FPGA configured successfully with bitstream "C:/Users/Charles/Desktop/18-643/Bad_Raycaster/project_3/project_3.sdk/design_1_wrapper_hw_platform_0/design_1_wrapper.bit"
+04:41:19 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+04:41:19 INFO  : 'targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0' command is executed.
+04:41:22 INFO  : FPGA configured successfully with bitstream "C:/Users/Charles/Desktop/18-643/Bad_Raycaster/project_3/project_3.sdk/design_1_wrapper_hw_platform_0/design_1_wrapper.bit"
+04:42:04 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+04:42:04 INFO  : 'targets -set -filter {jtag_cable_name =~ "Avnet USB-to-JTAG/UART Pod V1 1234-oj1A" && level==0} -index 0' command is executed.
+04:42:07 INFO  : FPGA configured successfully with bitstream "C:/Users/Charles/Desktop/18-643/Bad_Raycaster/project_3/project_3.sdk/design_1_wrapper_hw_platform_0/design_1_wrapper.bit"

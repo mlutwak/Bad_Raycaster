@@ -1,0 +1,33 @@
+04:48:09 **** Incremental Build of configuration Debug for project RayTrace ****
+make all 
+'Building file: ../src/camera.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -std=gnu11 -MMD -MP -MF"src/camera.d" -MT"src/camera.o" -c -o "src/camera.o" "../src/camera.c"
+In file included from ../src/camera.c:1:0:
+../src/camera.h:10:17: error: field 'origin' has incomplete type
+     struct vec3 origin;
+                 ^~~~~~
+../src/camera.h:11:17: error: field 'dir' has incomplete type
+     struct vec3 dir;
+                 ^~~
+../src/camera.h:12:17: error: field 'c2w' has incomplete type
+     struct mat3 c2w;
+                 ^~~
+../src/camera.h:20:17: error: field 'origin' has incomplete type
+     struct vec3 origin;
+                 ^~~~~~
+../src/camera.h:21:17: error: field 'dir' has incomplete type
+     struct vec3 dir;
+                 ^~~
+../src/camera.h:29:65: error: unknown type name 'bool'; did you mean '_Bool'?
+ ray_t* get_ray_through_pixel(camera_t* cam, size_t x, size_t y, bool yes);
+                                                                 ^~~~
+                                                                 _Bool
+../src/camera.c:10:65: error: unknown type name 'bool'; did you mean '_Bool'?
+ ray_t* get_ray_through_pixel(camera_t* cam, size_t x, size_t y, bool yes) {
+                                                                 ^~~~
+                                                                 _Bool
+make: *** [src/subdir.mk:29: src/camera.o] Error 1
+
+04:48:09 Build Finished (took 550ms)
+
