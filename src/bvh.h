@@ -22,10 +22,14 @@ typedef float tri_t[3][3];
 
 bvh_t *bvh;
 tri_t *tris;
+// char *bvh_str;
 
 void parse_bvh_file(char *file_name);
+ssize_t getline_str(char **line, size_t *len, char **bvh_str);
 
 void print_bvh();
 void free_bvh();
+
+void define_bvh_str();
 
 #endif

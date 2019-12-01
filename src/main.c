@@ -9,6 +9,7 @@
 #define CAM_HFOV    110
 #define CAM_VFOV    70
 
+#define STRMODE 1
 
 #include "camera.h"
 #include <math.h>
@@ -17,11 +18,19 @@
 #include "intersect.h"
 
 int main(int argc, char** argv) {
+
+#ifndef STRMODE
     if (argc < 2) return 1;
     //printf("%s\n", argv[1]);
     parse_bvh_file(argv[1]);
     //print_bvh();
     bool yes = (argv[2][0] == 'Y');
+#else
+    parse_bvh_file(NULL);
+    bool yes = true;
+#endif
+
+    // printf("after calling parse\n");
 
     camera_t * cam = malloc(sizeof(camera_t));
 
