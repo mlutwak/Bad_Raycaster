@@ -1,0 +1,50 @@
+INFO: [HLS 200-10] Running 'C:/Vivado/2018.3/bin/unwrapped/win64.o/vivado_hls.exe'
+INFO: [HLS 200-10] For user 'Charles' on host 'chuck' (Windows NT_amd64 version 6.2) on Sun Dec 01 02:17:59 -0500 2019
+INFO: [HLS 200-10] In directory 'C:/Users/Charles/Desktop/18-643/Bad_Raycaster'
+INFO: [HLS 200-10] Opening project 'C:/Users/Charles/Desktop/18-643/Bad_Raycaster/RayTrace'.
+INFO: [HLS 200-10] Adding design file 'src/bvh.h' to the project
+INFO: [HLS 200-10] Adding design file 'src/camera.h' to the project
+INFO: [HLS 200-10] Adding design file 'src/intersect.c' to the project
+INFO: [HLS 200-10] Adding design file 'src/intersect.h' to the project
+INFO: [HLS 200-10] Adding design file 'lib/mathc.h' to the project
+INFO: [HLS 200-10] Adding test bench file 'src/bvh.c' to the project
+INFO: [HLS 200-10] Adding test bench file 'src/camera.c' to the project
+INFO: [HLS 200-10] Adding test bench file 'src/main.c' to the project
+INFO: [HLS 200-10] Adding test bench file 'lib/mathc.c' to the project
+INFO: [HLS 200-10] Opening solution 'C:/Users/Charles/Desktop/18-643/Bad_Raycaster/RayTrace/solution1'.
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [SYN 201-201] Setting up clock 'default' with an uncertainty of 1.25ns.
+INFO: [HLS 200-10] Setting target device to 'xczu3eg-sbva484-1-e'
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'src/intersect.c' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:00 ; elapsed = 00:00:06 . Memory (MB): peak = 103.480 ; gain = 18.738
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:00 ; elapsed = 00:00:06 . Memory (MB): peak = 103.480 ; gain = 18.738
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:01 ; elapsed = 00:00:07 . Memory (MB): peak = 118.859 ; gain = 34.117
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [XFORM 203-602] Inlining function 'fp_struct<float>::data' into 'fp_struct<float>::to_float' (r:/builds/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/src/hls\utils/x_hls_utils.h:348) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<float>::to_float' into 'fp_struct<float>::to_ieee' (r:/builds/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/src/hls\utils/x_hls_utils.h:369) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<float>::to_ieee' into 'generic_copysign<float>' (r:/builds/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/hlsmath/include/FloatingPoint/hls_copysign.h:13) automatically.
+INFO: [XFORM 203-602] Inlining function 'generic_copysign<float>' into 'generic_fabs<float>' (r:/builds/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_fabs.h:12) automatically.
+INFO: [XFORM 203-602] Inlining function 'generic_fabs<float>' into 'fabsf' (r:/builds/2018.3/continuous/2018_12_06_2405991/src/products/hls/hls_lib/hlsmath/src/c/fabsfloat.cpp:7) automatically.
+INFO: [XFORM 203-602] Inlining function 'vec3_subtract.1' into 'intersect_tri' (src/intersect.c:132) automatically.
+INFO: [XFORM 203-602] Inlining function 'vec3_subtract' into 'intersect_tri' (src/intersect.c:134) automatically.
+INFO: [XFORM 203-602] Inlining function 'vec3_cross.1' into 'intersect_tri' (src/intersect.c:137) automatically.
+INFO: [XFORM 203-602] Inlining function 'vec3_cross' into 'intersect_tri' (src/intersect.c:138) automatically.
+INFO: [XFORM 203-602] Inlining function 'vec3_dot' into 'intersect_tri' (src/intersect.c:139) automatically.
+INFO: [XFORM 203-602] Inlining function 'vec3_dot.1' into 'intersect_tri' (src/intersect.c:142) automatically.
+INFO: [XFORM 203-602] Inlining function 'fabsf' into 'intersect_tri' (src/intersect.c:162) automatically.
+ERROR: [SYNCHK 200-61] src/intersect.c:173: unsupported memory access on variable 'v1' which is (or contains) an array with unknown size at compile time.
+INFO: [SYNCHK 200-10] 1 error(s), 0 warning(s).
+ERROR: [HLS 200-70] Synthesizability check failed.
+command 'ap_source' returned error code
+    while executing
+"source C:/Users/Charles/Desktop/18-643/Bad_Raycaster/RayTrace/solution1/csynth.tcl"
+    invoked from within
+"hls::main C:/Users/Charles/Desktop/18-643/Bad_Raycaster/RayTrace/solution1/csynth.tcl"
+    ("uplevel" body line 1)
+    invoked from within
+"uplevel 1 hls::main {*}$args"
+    (procedure "hls_proc" line 5)
+    invoked from within
+"hls_proc $argv"
