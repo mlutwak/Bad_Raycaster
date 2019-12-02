@@ -7,9 +7,15 @@ def writeFile(path, contents):
         f.write(contents)
 
 def repr_file(path):
-    contents = readFile(path)
-    new_path = "repr_%s" % path
-    new_contents = repr(contents);
+    contents = readFile("%s.txt" % path)
+    new_path = "src/bfs_%s.h" % path
+    new_contents = "char big_fucking_string[] = %s;" % repr(contents).replace("'", '"')
     writeFile(new_path, new_contents);
 
-repr_file("bvh_cow_100.txt");
+
+repr_file("bvh_cow_3")
+repr_file("bvh_cow_all")
+repr_file("bvh_cow_100")
+repr_file("bvh_maxplanck_100")
+repr_file("bvh_peter_100")
+repr_file("bvh_teapot_100")

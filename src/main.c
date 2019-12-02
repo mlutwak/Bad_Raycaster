@@ -10,7 +10,9 @@
 #define CAM_VFOV    70
 
 #define STRMODE 1
+#define PRNTMODE 0
 
+#include <time.h>
 #include "camera.h"
 #include <math.h>
 #include "../lib/mathc.h"
@@ -28,6 +30,11 @@ int main(int argc, char** argv) {
 #else
     parse_bvh_file(NULL);
     bool yes = true;
+#endif
+
+#if (PRNTMODE == 1)
+    clock_t start, end;
+    double cpu_time_used;
 #endif
 
     // printf("after calling parse\n");
@@ -56,6 +63,10 @@ int main(int argc, char** argv) {
     mfloat_t max_dist = -1.0;
     mfloat_t min_dist = -1.0;
 
+#if (PRNTMODE == 1)
+    start = clock();
+#endif
+
     for (i=0; i<HEIGHT; i++) {
         for (j=0; j<WIDTH; j++) {
             ray_t* ret = get_ray_through_pixel(cam, j,i,yes);
@@ -70,6 +81,12 @@ int main(int argc, char** argv) {
             if ((dist != ISECT_MISS) && (min_dist < 0 || min_dist > dist)) min_dist = dist;
         }
     }
+
+#if (PRNTMODE == 1)
+    end = clock();
+    cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
+    printf("time taken: %f\n", cpu_time_used);
+#endif
 
     //return 0;
     //printf("here:(%f,%f)\n", min_dist, max_dist);
@@ -87,6 +104,7 @@ int main(int argc, char** argv) {
     miss_g = 0;
     miss_b = 63;
 
+#if(PRNTMODE == 0)
     for (i=0; i<HEIGHT; i++) {
         for (j=0; j<WIDTH; j++) {
             char r, g, b;
@@ -106,6 +124,7 @@ int main(int argc, char** argv) {
         }
         printf("\n");
     }
+#endif
 
 
     free_bvh();

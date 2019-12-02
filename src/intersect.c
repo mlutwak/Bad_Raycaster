@@ -162,27 +162,27 @@ mfloat_t intersect_tri(ray_t r, tri_t tri) {
     return MFABS(uvt[2]);
 }
 
-mfloat_t vec3_dot(mfloat_t *v0, mfloat_t *v1)
-{
-	return v0[0] * v1[0] + v0[1] * v1[1] + v0[2] * v1[2];
-}
+// mfloat_t vec3_dot(mfloat_t *v0, mfloat_t *v1)
+// {
+// 	return v0[0] * v1[0] + v0[1] * v1[1] + v0[2] * v1[2];
+// }
 
-mfloat_t *vec3_cross(mfloat_t *result, mfloat_t *v0, mfloat_t *v1)
-{
-	mfloat_t cross[VEC3_SIZE];
-	cross[0] = v0[1] * v1[2] - v0[2] * v1[1];
-	cross[1] = v0[2] * v1[0] - v0[0] * v1[2];
-	cross[2] = v0[0] * v1[1] - v0[1] * v1[0];
-	result[0] = cross[0];
-	result[1] = cross[1];
-	result[2] = cross[2];
-	return result;
-}
+// mfloat_t *vec3_cross(mfloat_t *result, mfloat_t *v0, mfloat_t *v1)
+// {
+// 	mfloat_t cross[VEC3_SIZE];
+// 	cross[0] = v0[1] * v1[2] - v0[2] * v1[1];
+// 	cross[1] = v0[2] * v1[0] - v0[0] * v1[2];
+// 	cross[2] = v0[0] * v1[1] - v0[1] * v1[0];
+// 	result[0] = cross[0];
+// 	result[1] = cross[1];
+// 	result[2] = cross[2];
+// 	return result;
+// }
 
-mfloat_t *vec3_subtract(mfloat_t *result, mfloat_t *v0, mfloat_t *v1)
-{
-	result[0] = v0[0] - v1[0];
-	result[1] = v0[1] - v1[1];
-	result[2] = v0[2] - v1[2];
-	return result;
-}
+// mfloat_t *vec3_subtract(mfloat_t *result, mfloat_t *v0, mfloat_t *v1)
+// {
+// 	result[0] = v0[0] - v1[0];
+// 	result[1] = v0[1] - v1[1];
+// 	result[2] = v0[2] - v1[2];
+// 	return result;
+// }

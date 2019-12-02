@@ -1,7 +1,8 @@
 #define MATHC_USE_UNIONS
 #include <stdlib.h>
 #include <stdio.h>
-//#include "../lib/mathc.h"
+#include "../lib/mathc.h"
+#include <stdbool.h>
 
 #ifndef __CAMERA__
 #define __CAMERA__
