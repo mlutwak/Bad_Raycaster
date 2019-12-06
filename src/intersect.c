@@ -1,5 +1,7 @@
 #include "intersect.h"
+//LOOKHERECHARLESLOOKHERECHARLESLOOKHERECHARLESLOOKHERECHARLESLOOKHERECHARLESLOOKHERECHARLES
 #include <time.h>
+//LOOKHERECHARLESLOOKHERECHARLESLOOKHERECHARLESLOOKHERECHARLESLOOKHERECHARLESLOOKHERECHARLES
 
 
 
@@ -74,9 +76,12 @@ mfloat_t min(mfloat_t a, mfloat_t b) {
 mfloat_t intersect_kernel(ray_t r, tri_t t[KERNEL_SIZE], size_t num_tris) {
     // for each triangle
 
+//LOOKHERECHARLESLOOKHERECHARLESLOOKHERECHARLESLOOKHERECHARLESLOOKHERECHARLESLOOKHERECHARLES
+    // for real hls we would probably need to move this out of the function call
     clock_t start, end;
     double cpu_time_used;
     start = clock();
+//LOOKHERECHARLESLOOKHERECHARLESLOOKHERECHARLESLOOKHERECHARLESLOOKHERECHARLESLOOKHERECHARLES
 
     mfloat_t small = ISECT_MISS;
     mfloat_t ret = ISECT_MISS;
@@ -88,10 +93,12 @@ mfloat_t intersect_kernel(ray_t r, tri_t t[KERNEL_SIZE], size_t num_tris) {
         }
     }
 
+//LOOKHERECHARLESLOOKHERECHARLESLOOKHERECHARLESLOOKHERECHARLESLOOKHERECHARLESLOOKHERECHARLES
     end = clock();
     cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
     intersect_time_taken += cpu_time_used;
     intersect_call_count++;
+//LOOKHERECHARLESLOOKHERECHARLESLOOKHERECHARLESLOOKHERECHARLESLOOKHERECHARLESLOOKHERECHARLES
 
     return small;
 

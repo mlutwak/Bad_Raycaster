@@ -88,8 +88,10 @@ int main(int argc, char** argv) {
     double cpu_time_used;
 #endif
 
+//LOOKHERECHARLESLOOKHERECHARLESLOOKHERECHARLESLOOKHERECHARLESLOOKHERECHARLESLOOKHERECHARLES
     intersect_time_taken = 0;
     intersect_call_count = 0;
+//LOOKHERECHARLESLOOKHERECHARLESLOOKHERECHARLESLOOKHERECHARLESLOOKHERECHARLESLOOKHERECHARLES
 
     printf("after calling parse\n");
 
@@ -169,8 +171,10 @@ int main(int argc, char** argv) {
     end = clock();
     cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
     printf("time taken: %f\n", cpu_time_used);
+//LOOKHERECHARLESLOOKHERECHARLESLOOKHERECHARLESLOOKHERECHARLESLOOKHERECHARLESLOOKHERECHARLES
     printf("intersect time taken: %f\n", intersect_time_taken);
     printf("intersect_call_count: %d\n", intersect_call_count);
+//LOOKHERECHARLESLOOKHERECHARLESLOOKHERECHARLESLOOKHERECHARLESLOOKHERECHARLESLOOKHERECHARLES
 #endif
 
     //return 0;
