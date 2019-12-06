@@ -9,6 +9,9 @@
 
 #define KERNEL_SIZE 100
 
+double intersect_time_taken;
+int intersect_call_count;
+
 void swap(mfloat_t* a, mfloat_t* b);
 
 mfloat_t intersect(ray_t* r, bvh_t* b);

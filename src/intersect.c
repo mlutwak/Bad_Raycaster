@@ -1,4 +1,8 @@
 #include "intersect.h"
+#include <time.h>
+
+
+
 #define ISECT_MISS 18643.0
 
 extern tri_t* tris;
@@ -9,9 +13,11 @@ void swap(mfloat_t* a, mfloat_t* b) {
     *b=(mfloat_t) (*((uint32_t*) a)^*((uint32_t*)b));
     *a=(mfloat_t) (*((uint32_t*) a)^*((uint32_t*)b));
 }
-
+ 
 
 mfloat_t intersect(ray_t* r, bvh_t* b) {
+    //printf("ray:%x bvh:%x \n", r, b);
+    //printf("doing stuff!\n");
     volatile  mfloat_t left, right, ret;
     mfloat_t small;
     size_t idx = 0;
@@ -23,12 +29,14 @@ mfloat_t intersect(ray_t* r, bvh_t* b) {
     if (intersect_box(r,b) != ISECT_MISS) {
         // if this isn't a leaf node node:
         if (b->left != NULL) {
+            //printf("bleft:%x\n", b->left);
             left = intersect(r, b->left);
             right = intersect(r, b->right);
             return ((left > right) ? right : left);
         }
         // if this is a leaf node
         else {
+            //printf("tris:%x\n", tris);
             return intersect_kernel(*r, &tris[b->start_index], b->stop_index - b->start_index);
             // for each triangle
             for (int i=b->start_index; i < b->stop_index; i++) {
@@ -65,6 +73,11 @@ mfloat_t min(mfloat_t a, mfloat_t b) {
 
 mfloat_t intersect_kernel(ray_t r, tri_t t[KERNEL_SIZE], size_t num_tris) {
     // for each triangle
+
+    clock_t start, end;
+    double cpu_time_used;
+    start = clock();
+
     mfloat_t small = ISECT_MISS;
     mfloat_t ret = ISECT_MISS;
     tri_t* cur = t;
@@ -74,6 +87,12 @@ mfloat_t intersect_kernel(ray_t r, tri_t t[KERNEL_SIZE], size_t num_tris) {
             small = ret;
         }
     }
+
+    end = clock();
+    cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
+    intersect_time_taken += cpu_time_used;
+    intersect_call_count++;
+
     return small;
 
 }
@@ -84,6 +103,7 @@ mfloat_t intersect_box(ray_t* r, bvh_t* b) {
     mfloat_t tmin = -INFINITY;
     mfloat_t tmax = INFINITY;
     mfloat_t t1, t2;
+    //printf("r:%x b:%x\n", r, b);
 
     if (r->dir.x != 0.0) {
 
@@ -111,11 +131,19 @@ mfloat_t intersect_box(ray_t* r, bvh_t* b) {
         tmin = max(tmin, min(t1, t2));
         tmax = min(tmax, max(t1, t2));
     }
+    //printf("tmax:%f tmin:%f", tmax, tmin);
 
     // does line isect work?
-    if (tmax < tmin) return ISECT_MISS;
+    if (tmax < tmin) {
+        //printf("max<min\n");
+        return ISECT_MISS;
+    } 
+
     // is isect in front?
-    if (tmin > 0 && tmax > 0) return ISECT_MISS;
+    if (tmin > 0 && tmax > 0) {
+        //printf("min>0 max>0\n");
+        return ISECT_MISS;
+    }
 
     return ISECT_MISS - 1;
 

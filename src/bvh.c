@@ -3,9 +3,9 @@
 #include <stdio.h>
 #include <string.h>
 #include "bvh.h"
-#include "bfs_bvh_maxplanck_100.h"
+#include "bfs_bvh_cow_100.h"
 
-#define STRMODE 1
+// #define STRMODE 0
 
 ////////////////////////////////////////////////////////////////////////////////
 // Parse FILE
@@ -81,7 +81,7 @@ bvh_t *populate_bvh(char **line_addr, size_t *len_addr, FILE *fp, char **bvh_str
 
 void parse_bvh_file(char *file_name) {
 
-  // printf("here!\n");
+  printf("here!\n");
 
   FILE *fp;
   char *bvh_str;
@@ -96,7 +96,7 @@ void parse_bvh_file(char *file_name) {
   int vi;
   int num_tris;
 
-  // printf("here now!\n");
+  printf("here now!\n");
 
   //Open file and check for sucess
 #ifndef STRMODE
@@ -115,7 +115,7 @@ void parse_bvh_file(char *file_name) {
   // printf("ptr: %c\n", *bvh_str);
   fp = NULL;
 #endif
-  // printf("after calling def bvh str\n");
+  printf("after calling def bvh str\n");
 
   // parse the number of triangles in the scene
 #ifndef STRMODE
@@ -124,7 +124,7 @@ void parse_bvh_file(char *file_name) {
   read = getline_str(&line, &len, &bvh_str);
 #endif
   num_tris = atoi(line);
-  // printf("num_tris:%d\n", num_tris);
+  printf("num_tris:%d\n", num_tris);
 
   tris = calloc(num_tris, sizeof(tri_t));
 
